@@ -1,8 +1,10 @@
 <?php
 
+use App\Brand;
+use App\Type;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class BrandSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call('UsersTableSeeder');
-        $this->call('TypeSeeder');
+        
     }
 }

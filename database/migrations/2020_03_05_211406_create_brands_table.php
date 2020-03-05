@@ -16,6 +16,7 @@ class CreateBrandsTable extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->bigInteger('typeId')->unsigned();
+            $table->string('name');
             $table->foreign('typeId')
                 ->references('id')
                 ->on('types')
