@@ -16,6 +16,17 @@ class BillController extends Controller
     ];
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $bills = Bill::with('type', 'brand')->get();
+        return response()->json($bills);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
