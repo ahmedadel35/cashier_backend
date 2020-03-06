@@ -14,7 +14,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::with('brands')->get();
+        return $types->toJson();
     }
 
     /**
@@ -25,7 +26,13 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $t = $this->validate($request, [
+            'name' => 'required|string|min:2|max:255'
+        ]);
+        
+        Type::create($t);
+
+        return json_encode($t);
     }
 
     /**

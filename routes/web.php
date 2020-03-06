@@ -14,3 +14,6 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/all', 'TypeController@index');
+$router->post('/type', 'TypeController@store');
