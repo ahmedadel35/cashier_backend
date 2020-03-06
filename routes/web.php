@@ -30,3 +30,4 @@ $router->delete('/brand/{id}', 'BrandController@destroy');
 // bill routes
 // $router->get('/bill-code', 'BillController@getLastId');
 $router->post('/bill', 'BillController@store');
+$router->put('/bill/{id}', 'BillController@update');

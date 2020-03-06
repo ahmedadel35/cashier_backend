@@ -31,26 +31,24 @@ class BillController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Bill  $bill
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Bill $bill)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Bill  $bill
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bill $bill)
+    public function update(Request $request, int $id)
     {
-        //
+        $rq = (object)$this->validate($request, $this->validationRules);
+
+        $b = Bill::findOrFail($id);
+        $b->quantity = $rq->quantity;
+        $b->price = $rq->price;
+        $b->value = $rq->value;
+
+        $b->update();
+
+        return response()->json($b);
     }
 
     /**
@@ -59,7 +57,7 @@ class BillController extends Controller
      * @param  \App\Bill  $bill
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bill $bill)
+    public function destroy(int $id)
     {
         //
     }
