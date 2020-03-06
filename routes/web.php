@@ -31,3 +31,4 @@ $router->delete('/brand/{id}', 'BrandController@destroy');
 // $router->get('/bill-code', 'BillController@getLastId');
 $router->post('/bill', 'BillController@store');
 $router->put('/bill/{id}', 'BillController@update');
+$router->delete('/bill/{id}', 'BillController@destroy');

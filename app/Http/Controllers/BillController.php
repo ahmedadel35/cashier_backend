@@ -39,7 +39,7 @@ class BillController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $rq = (object)$this->validate($request, $this->validationRules);
+        $rq = (object) $this->validate($request, $this->validationRules);
 
         $b = Bill::findOrFail($id);
         $b->quantity = $rq->quantity;
@@ -59,6 +59,10 @@ class BillController extends Controller
      */
     public function destroy(int $id)
     {
-        //
+        $b = Bill::findOrFail($id);
+
+        $b->delete();
+
+        return response()->json(['delete' => true]);
     }
 }
