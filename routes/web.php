@@ -21,3 +21,6 @@ $router->get('/all', 'TypeController@index');
 $router->post('/type', 'TypeController@store');
 $router->put('/type/{id}', 'TypeController@update');
 $router->delete('/type/{id}', 'TypeController@destroy');
+
+// brand routes
+$router->post('/type/{id}', 'BrandController@store');

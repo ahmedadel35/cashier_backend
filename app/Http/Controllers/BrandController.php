@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Brand;
+use App\Type;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -18,46 +19,23 @@ class BrandController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, int $typeId)
     {
-        //
-    }
+        $b = $this->validate($request, [
+            'name' => 'required|string|min:2|max:255',
+            'price' => 'sometimes|numeric'
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Brand $brand)
-    {
-        //
-    }
+        $type = Type::findOrFail($typeId);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Brand  $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Brand $brand)
-    {
-        //
+        $type->brands()->create($b);
+
+        return $b;
     }
 
     /**
