@@ -15,7 +15,7 @@ class TypeController extends Controller
     public function index()
     {
         $types = Type::with('brands')->get();
-        return $types->toJson();
+        return response()->json($types);
     }
 
     /**
@@ -34,7 +34,7 @@ class TypeController extends Controller
 
         Type::create($t);
 
-        return json_encode($t);
+        return response()->json($t, 201);
     }
 
     /**
@@ -56,7 +56,7 @@ class TypeController extends Controller
         $t->name = $q->name;
         $t->update();
 
-        return $t->toJson();
+        return response()->json($t);
     }
 
     /**
@@ -71,6 +71,6 @@ class TypeController extends Controller
 
         $t->delete();
 
-        return json_encode(['delete' => true]);
+        return response()->json(['delete' => true]);
     }
 }
