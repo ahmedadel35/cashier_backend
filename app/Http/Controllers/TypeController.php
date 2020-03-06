@@ -65,8 +65,12 @@ class TypeController extends Controller
      * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy(int $typeId)
     {
-        //
+        $t = Type::findOrFail($typeId);
+
+        $t->delete();
+
+        return json_encode(['delete' => true]);
     }
 }

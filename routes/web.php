@@ -20,3 +20,4 @@ $router->get('/all', 'TypeController@index');
 // type routes
 $router->post('/type', 'TypeController@store');
 $router->put('/type/{id}', 'TypeController@update');
+$router->delete('/type/{id}', 'TypeController@destroy');
