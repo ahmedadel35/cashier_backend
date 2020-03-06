@@ -26,3 +26,7 @@ $router->delete('/type/{id}', 'TypeController@destroy');
 $router->post('/type/{id}', 'BrandController@store');
 $router->put('/brand/{id}', 'BrandController@update');
 $router->delete('/brand/{id}', 'BrandController@destroy');
+
+// bill routes
+// $router->get('/bill-code', 'BillController@getLastId');
+$router->post('/bill', 'BillController@store');

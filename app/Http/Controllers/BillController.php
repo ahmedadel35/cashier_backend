@@ -7,15 +7,13 @@ use Illuminate\Http\Request;
 
 class BillController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+    private $validationRules = [
+        'typeId' => 'required|numeric|exists:types,id',
+        'brandId' => 'required|numeric|exists:brands,id',
+        'quantity' => 'required|numeric',
+        'price' => 'required|numeric',
+        'value' => 'required|numeric'
+    ];
 
     /**
      * Store a newly created resource in storage.
@@ -25,7 +23,11 @@ class BillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $b = $this->validate($request, $this->validationRules);
+
+        Bill::create($b);
+
+        return response()->json($b);
     }
 
     /**

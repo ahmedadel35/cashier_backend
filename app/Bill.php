@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Bill extends Model
 {
+    protected $guarded = [];
+
     public function type(): BelongsTo
     {
         return $this->belongsTo(Type::class, 'typeId');
