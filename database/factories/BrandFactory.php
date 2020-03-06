@@ -9,6 +9,7 @@ use Faker\Generator as Faker;
 $factory->define(Brand::class, function (Faker $faker) {
     return [
         'typeId' => factory(Type::class),
-        'name' => $faker->word
+        'name' => $faker->word,
+        'price' => $faker->randomFloat()
     ];
 });

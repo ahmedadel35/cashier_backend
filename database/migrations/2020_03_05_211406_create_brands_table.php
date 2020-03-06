@@ -17,6 +17,7 @@ class CreateBrandsTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->bigInteger('typeId')->unsigned();
             $table->string('name');
+            $table->float('price');
             $table->foreign('typeId')
                 ->references('id')
                 ->on('types')
