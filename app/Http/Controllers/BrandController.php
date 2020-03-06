@@ -39,9 +39,12 @@ class BrandController extends Controller
      */
     public function update(Request $request, int $id)
     {
+        // add typeid to validation rules to check if exists
+        $this->validationRules['typeId'] = 'required|exists:types,id';
+
         $rq = (object) $this->validate($request, $this->validationRules);
 
-        $brand = Brand::findOrFail($id);
+        $brand = Brand::find($id);
         $brand->name = $rq->name;
         $brand->price = $rq->price;
         $brand->update();
