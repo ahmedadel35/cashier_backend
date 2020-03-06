@@ -8,15 +8,10 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+    private $validationRules = [
+        'name' => 'required|string|min:2|max:255',
+        'price' => 'sometimes|numeric'
+    ];
 
     /**
      * Store a newly created resource in storage.
@@ -26,16 +21,13 @@ class BrandController extends Controller
      */
     public function store(Request $request, int $typeId)
     {
-        $b = $this->validate($request, [
-            'name' => 'required|string|min:2|max:255',
-            'price' => 'sometimes|numeric'
-        ]);
+        $b = $this->validate($request, $this->validationRules);
 
         $type = Type::findOrFail($typeId);
 
         $type->brands()->create($b);
 
-        return $b;
+        return response()->json($b, 201);
     }
 
     /**
@@ -45,9 +37,16 @@ class BrandController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, int $id)
     {
-        //
+        $rq = (object) $this->validate($request, $this->validationRules);
+
+        $brand = Brand::findOrFail($id);
+        $brand->name = $rq->name;
+        $brand->price = $rq->price;
+        $brand->update();
+
+        return response()->json($brand);
     }
 
     /**
