@@ -10,6 +10,6 @@ $factory->define(Brand::class, function (Faker $faker) {
     return [
         'typeId' => factory(Type::class),
         'name' => $faker->word,
-        'price' => $faker->randomFloat()
+        'price' => $faker->randomFloat(4, 0, 1000)
     ];
 });
