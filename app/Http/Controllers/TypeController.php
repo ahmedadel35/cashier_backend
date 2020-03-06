@@ -20,6 +20,8 @@ class TypeController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * * Request Body Must Be form-data
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -29,33 +31,32 @@ class TypeController extends Controller
         $t = $this->validate($request, [
             'name' => 'required|string|min:2|max:255'
         ]);
-        
+
         Type::create($t);
 
         return json_encode($t);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Type  $type
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Type $type)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
+     * 
+     * * Request Body Must Be x-www-form-urlencoded
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(Request $request, $type)
     {
-        //
+        $q = (object)$this->validate($request, [
+            'name' => 'required|string|min:2|max:255'
+        ]);
+
+        $t = Type::findOrFail($type);
+        $t->name = $q->name;
+        $t->update();
+
+        return $t->toJson();
     }
 
     /**
