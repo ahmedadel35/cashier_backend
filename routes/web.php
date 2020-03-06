@@ -25,3 +25,4 @@ $router->delete('/type/{id}', 'TypeController@destroy');
 // brand routes
 $router->post('/type/{id}', 'BrandController@store');
 $router->put('/brand/{id}', 'BrandController@update');
+$router->delete('/brand/{id}', 'BrandController@destroy');
