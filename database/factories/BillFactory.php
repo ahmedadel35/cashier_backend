@@ -16,6 +16,7 @@ $factory->define(Bill::class, function (Faker $faker) {
         'brandId' => $brand->id,
         'quantity' => $q,
         'price' => $price,
-        'value' => $q * $price
+        'value' => $q * $price,
+        'state' => ['hot', 'cold'][rand(0, 1)]
     ];
 });

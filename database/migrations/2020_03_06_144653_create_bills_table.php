@@ -20,6 +20,7 @@ class CreateBillsTable extends Migration
             $table->float('quantity');
             $table->float('price');
             $table->float('value');
+            $table->string('state')->default('');
             $table->timestamps();
 
             $table->foreign('typeId')

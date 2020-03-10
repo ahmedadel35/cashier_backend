@@ -15,21 +15,21 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/all', 'TypeController@index');
+$router->get('/api/all', 'TypeController@index');
 
 // type routes
-$router->post('/type', 'TypeController@store');
-$router->put('/type/{id}', 'TypeController@update');
-$router->delete('/type/{id}', 'TypeController@destroy');
+$router->post('/api/type', 'TypeController@store');
+$router->put('/api/type/{id}', 'TypeController@update');
+$router->delete('/api/type/{id}', 'TypeController@destroy');
 
 // brand routes
-$router->post('/type/{id}', 'BrandController@store');
-$router->put('/brand/{id}', 'BrandController@update');
-$router->delete('/brand/{id}', 'BrandController@destroy');
+$router->post('/api/type/{id}', 'BrandController@store');
+$router->put('/api/brand/{id}', 'BrandController@update');
+$router->delete('/api/brand/{id}', 'BrandController@destroy');
 
 // bill routes
-// $router->get('/bill-code', 'BillController@getLastId');
-$router->get('/bill', 'BillController@index');
-$router->post('/bill', 'BillController@store');
-$router->put('/bill/{id}', 'BillController@update');
-$router->delete('/bill/{id}', 'BillController@destroy');
+// $router->get('/api/bill-code', 'BillController@getLastId');
+$router->get('/api/bill', 'BillController@index');
+$router->post('/api/bill', 'BillController@store');
+$router->put('/api/bill/{id}', 'BillController@update');
+$router->delete('/api/bill/{id}', 'BillController@destroy');
