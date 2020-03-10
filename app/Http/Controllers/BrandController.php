@@ -25,7 +25,7 @@ class BrandController extends Controller
 
         $type = Type::findOrFail($typeId);
 
-        $type->brands()->create($b);
+        $b = $type->brands()->create($b);
 
         return response()->json($b, 201);
     }

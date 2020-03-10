@@ -32,7 +32,7 @@ class TypeController extends Controller
             'name' => 'required|string|min:2|max:255'
         ]);
 
-        Type::create($t);
+        $t = Type::create($t);
 
         return response()->json($t, 201);
     }
