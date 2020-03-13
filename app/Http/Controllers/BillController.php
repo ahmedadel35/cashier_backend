@@ -34,11 +34,20 @@ class BillController extends Controller
      */
     public function store(Request $request)
     {
-        $b = $this->validate($request, $this->validationRules);
+        $bills = $this->validate($request, [
+            '*.typeId' => 'required|integer|exists:types,id',
+            '*.brandId' => 'required|integer|exists:brands,id',
+            '*.state' => 'required|string|in:hot,cold',
+            '*.quantity' => 'required|numeric',
+            '*.price' => 'required|numeric',
+            '*.value' => 'required|numeric',
+        ]);
 
-        Bill::create($b);
+        foreach ($bills['*'] as $b) {
+            Bill::create($b);
+        }
 
-        return response()->json($b);
+        return response()->json(['saved' => true]);
     }
 
     /**

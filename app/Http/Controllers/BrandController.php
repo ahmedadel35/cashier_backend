@@ -45,6 +45,7 @@ class BrandController extends Controller
         $rq = (object) $this->validate($request, $this->validationRules);
 
         $brand = Brand::find($id);
+        $brand->typeId = $rq->typeId;
         $brand->name = $rq->name;
         $brand->price = $rq->price;
         $brand->update();
