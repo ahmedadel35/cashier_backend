@@ -12,11 +12,11 @@ class BillSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker\Generator $faker)
     {
         // $types = Type::all();
         $brands = Brand::all();
-        $brands->each(function (Brand $b) {
+        $brands->each(function (Brand $b) use ($faker) {
             $q = rand(0, 100);
             $b->bills()->create([
                 'typeId' => $b->typeId,
@@ -24,7 +24,8 @@ class BillSeeder extends Seeder
                 'price' => $b->price,
                 'quantity' => $q,
                 'value' => $q * $b->price,
-                'state' => ['hot', 'cold'][rand(0, 1)]
+                'state' => ['hot', 'cold'][rand(0, 1)],
+                'updated_at' => ($faker->dateTimeThisYear('+50 month', 'UTC'))->format('Y-m-d H:i:s')
             ]);
         });
     }
