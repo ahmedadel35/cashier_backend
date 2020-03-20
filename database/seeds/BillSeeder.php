@@ -23,7 +23,8 @@ class BillSeeder extends Seeder
                 'brandId' => $b->brandId,
                 'price' => $b->price,
                 'quantity' => $q,
-                'value' => $q * $b->price
+                'value' => $q * $b->price,
+                'state' => ['hot', 'cold'][rand(0, 1)]
             ]);
         });
     }
